@@ -61,3 +61,8 @@ track.addEventListener("touchend", (e) => {
   isDragging = false;
 });
 
+// === Avanço automático ===
+setInterval(() => {
+  nextSlide();
+}, 4000); // a cada 4 segundos
+
