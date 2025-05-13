@@ -37,7 +37,7 @@ p {
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 400px;
   margin: 40px auto;
   overflow: hidden;
 }
@@ -54,7 +54,7 @@ p {
 
 .carousel-track img {
   width: calc(100% / 12); /* divide igualmente o espaço para cada imagem */
-  height: 1024px;
+  height: 512px;
   object-fit: cover;
   flex-shrink: 0;
   border-radius: 12px;
