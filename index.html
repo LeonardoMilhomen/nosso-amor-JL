@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosso Amor 💖</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Jessica e Leonardo 💑</h1>
+  </header>
+
+  <button id="music-button" onclick="toggleMusic()">🎵 Tocar Música</button>
+  <audio id="background-music" autoplay muted loop>
+    <source src="music/Henrique e Juliano - Realidade ou Fantasia.mp3" type="audio/mp3" />
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="carousel-container">
+    <button class="carousel-button left" onclick="prevSlide()">&#10094;</button>
+    <div class="carousel-track-container">
+    <div class="carousel-track" id="carousel">
+      <img src="images/foto1.jpg" alt="Foto 1 de nós dois" />
+      <img src="images/foto2.jpg" alt="Foto 2 de nós dois" />
+      <img src="images/foto3.jpg" alt="Foto 3 de nós dois" />
+      <img src="images/foto4.jpg" alt="Foto 4 de nós dois" />
+      <img src="images/foto5.jpg" alt="Foto 5 de nós dois" />
+      <img src="images/foto6.jpg" alt="Foto 6 de nós dois" />
+      <img src="images/foto7.jpg" alt="Foto 7 de nós dois" />
+      <img src="images/foto8.jpg" alt="Foto 8 de nós dois" />
+      <img src="images/foto9.jpg" alt="Foto 9 de nós dois" />
+      <img src="images/foto10.jpg" alt="Foto 10 de nós dois" />
+      <img src="images/foto11.jpg" alt="Foto 11 de nós dois" />
+      <img src="images/foto12.jpg" alt="Foto 12 de nós dois" />
+    </div>
+    </div>
+    <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
+  </div>
+  <div id="comeco">
+    <h1>O começo da nossa história:</h1>
+    <br>
+  </div>
+   <div class="heart">
+    <div class="content">
+      <p><br>22 
+      <br>Outubro
+      2021</p>
+    </div>
+  </div>
+
+  <section class="timer" id="timer">
+    Estamos juntos há...
+  </section>
+
+  <script src="script/timer.js"></script>
+  <script src="script/carousel.js"></script>
+  <script src="script/music.js"></script>
+</body>
+</html>
