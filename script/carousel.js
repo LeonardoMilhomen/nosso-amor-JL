@@ -1,97 +1,66 @@
-const music = document.getElementById('background-music');
-const playButton = document.getElementById('play-button');
-const pauseButton = document.getElementById('pause-button');
-const musicAnimation = document.getElementById('music-animation');
+const track = document.getElementById("carousel");
+let currentIndex = 0;
+const totalImages = track.children.length;
 
-const playlist = [
-  'music/Henrique e Juliano - Realidade ou Fantasia.mp3',
-  'music/Delacruz - Sunshine.mp3',
-  'music/Matheus & Kauan - Meu Oxigênio.mp3',
-  'music/Usher - My Boo.mp3',
-  'music/Afrodite - Delacruz e IZA.mp3',
-  'music/Delacruz - Vício de amor.mp3',
-  'music/Destinys Child - Dangerously In Love.mp3',
-  'music/Filipe Ret - Amor Livre.mp3',
-  'music/Jaymes Young - Infinity.mp3',
-  'music/Justin Bieber - One time acoust.mp3',
-  'music/Justin Timberlake - Mirrors.mp3',
-  'music/Luiz Lins - A Música Mais Triste do Ano.mp3'
-];
-
-let currentTrack = 0;
-
-music.src = playlist[currentTrack];
-
-function updateCurrentTrackName() {
-  const currentTrackDisplay = document.getElementById('current-track');
-  const fileName = playlist[currentTrack].split('/').pop().replace('.mp3', '');
-  currentTrackDisplay.innerText = `Tocando agora: ${fileName}`;
+function updateCarousel() {
+  const offset = -(100 / 12) * currentIndex;
+  track.style.transform = `translateX(${offset}%)`;
 }
 
-function playCurrentTrack() {
-  music.muted = false;
-  music.src = playlist[currentTrack];
-  music.play();
-  updateCurrentTrackName();
-  showPauseButton();
-  showAnimation();
-}
-
-function playMusic() {
-  if (music.src !== playlist[currentTrack]) {
-    music.src = playlist[currentTrack];
+function nextSlide() {
+  if (currentIndex < totalImages - 1) {
+    currentIndex++;
+  } else {
+    currentIndex = 0; // volta para a primeira imagem
   }
-  music.play().then(() => {
-    updateCurrentTrackName();
-    showPauseButton();
-    showAnimation();
-  }).catch((e) => {
-    console.log("Erro ao tentar tocar música: ", e);
-  });
-}
+    updateCarousel();
+  }
 
-function pauseMusic() {
-  music.pause();
-  const currentTrackDisplay = document.getElementById('current-track');
-  currentTrackDisplay.innerText = `Pausado: ${playlist[currentTrack].split('/').pop().replace('.mp3', '')}`;
-  showPlayButton();
-  hideAnimation();
-}
+function prevSlide() {
+  if (currentIndex > 0) {
+    currentIndex--;
+  } else {
+    currentIndex = totalImages - 1; // vai para a última imagem
+  }
+    updateCarousel();
+  }
 
-function nextMusic() {
-  currentTrack = (currentTrack + 1) % playlist.length;
-  playCurrentTrack();
-}
+// === Suporte a toque (arrastar no celular) ===
 
-function prevMusic() {
-  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-  playCurrentTrack();
-}
+let startX = 0;
+let isDragging = false;
 
-function showPlayButton() {
-  playButton.style.display = 'inline';
-  pauseButton.style.display = 'none';
-}
-
-function showPauseButton() {
-  playButton.style.display = 'none';
-  pauseButton.style.display = 'inline';
-}
-
-function showAnimation() {
-  musicAnimation.style.display = 'flex';
-}
-
-function hideAnimation() {
-  musicAnimation.style.display = 'none';
-}
-
-
-
-music.addEventListener('ended', () => {
-  nextMusic();
+track.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
 });
 
-window.addEventListener('load', () => {
-  updateCurrentTrackName();
+track.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+
+  const currentX = e.touches[0].clientX;
+  const diff = startX - currentX;
+
+  // Evita scroll da página
+  if (Math.abs(diff) > 10) e.preventDefault();
 });
+
+track.addEventListener("touchend", (e) => {
+  if (!isDragging) return;
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+
+  if (diff > 50) {
+    // Arrastou para a esquerda
+    nextSlide();
+  } else if (diff < -50) {
+    // Arrastou para a direita
+    prevSlide();
+  }
+
+  isDragging = false;
+});
+// === Avanço automático ===
+setInterval(() => {
+  nextSlide();
+}, 4000); // a cada 4 segundos
