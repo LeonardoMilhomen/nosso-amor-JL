@@ -22,7 +22,14 @@ header {
 
 h1 {
   font-family: 'Dancing Script', cursive;
-  font-size: 3.5em;
+  font-size: 4.5em;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
   color: #fff;
   text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2);
 }
@@ -75,11 +82,11 @@ p {
 }
 
 .carousel-button.left {
-  left: 10px;
+  left: -10px;
 }
 
 .carousel-button.right {
-  right: 10px;
+  right: -10px;
 }
 
 .timer {
@@ -134,7 +141,7 @@ p {
 }
 
 #current-track {
-   font-family: 'Courgette', cursive;
+  font-family: 'Courgette', cursive;
   font-size: 1.2em;
   background: rgba(255, 255, 255, 0.2);
   padding: 12px 20px;
@@ -271,4 +278,28 @@ p {
   top: 60%;
   left: 20%;
 }
+
+.carousel-frame {
+  padding: 18px;
+  border: 5px double #ffb6c1; /* rosa claro */
+  border-radius: 30px;
+  box-shadow: 
+    0 0 20px rgba(255, 182, 193, 0.6),  /* brilho rosa claro */
+    0 0 40px rgba(255, 182, 193, 0.4);  /* brilho suave externo */
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  backdrop-filter: blur(2px);
+  max-width: 480px;
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.carousel-frame:hover {
+  box-shadow: 
+    0 0 25px rgba(255, 105, 180, 0.8),
+    0 0 50px rgba(255, 182, 193, 0.6);
+  transform: scale(1.01);
+}
+
+
+
 
